@@ -14,16 +14,16 @@ const fadeInUpAnimation = {
   visible: { opacity: 1, y: 0 },
 };
 
-const AnimatedButton = ({ text }: { text: string }) => (
-  <motion.button
-    className="arrow-button relative py-2 px-4 bg-white text-[18px] text-cyan leading-[27px] rounded-md"
+const Tooltip = ({ text }: { text: string }) => (
+  <motion.h1
+    className="relative py-2 px-4 bg-white text-[18px] text-cyan leading-[27px] rounded-md w-fit"
     initial="hidden"
     animate="visible"
     variants={fadeInAnimation}
     transition={{ delay: 0.8 }}>
     <span>{text}</span>
     <div className="arrow"></div>
-  </motion.button>
+  </motion.h1>
 );
 
 export const Content = () => {
@@ -33,7 +33,7 @@ export const Content = () => {
         <div className="flex flex-col md:flex-row gap-[20px] justify-between items-center">
           <div className="w-full md:w-1/2 mb-8 md:mb-0">
             <div className="mb-10">
-              <AnimatedButton text="풀타임, 파트타임" />
+              <Tooltip text="풀타임, 파트타임" />
               <motion.h1
                 className="text-[48px] leading-[62.4px] sm:text-[46.8px] mt-10 text-white/90"
                 initial="hidden"
@@ -52,6 +52,7 @@ export const Content = () => {
                 법률 및 인사관리 부담없이 <br className="sm:block hidden" />
                 1주일 이내에 원격으로 채용해보세요.
               </motion.p>
+
               <motion.p
                 className="text-[18px] sm:text-[24px] text-white/90 mt-6 underline"
                 initial="hidden"
@@ -61,6 +62,7 @@ export const Content = () => {
                 개발자가 필요하신가요?
               </motion.p>
             </div>
+
             <div className="sm:block hidden">
               <div className="grid grid-cols-3">
                 {['평균 월 120만원', '최대 3회 인력교체', '평균 3일, 최대 10일'].map((feature) => (
