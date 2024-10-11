@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Skills } from '@/app/components/organisms';
+import { Card, Skills } from '@/app/components/organisms';
 
 const fadeInAnimation = {
   hidden: { opacity: 0 },
@@ -78,8 +78,8 @@ export const Content = () => {
                       {feature === '평균 월 120만원'
                         ? '임금을 해당 국가를 기준으로 계산합니다.'
                         : feature === '최대 3회 인력교체'
-                        ? '막상 채용해보니 맞지 않아도 걱정하지 마세요.'
-                        : '급하게 사람이 필요한 경우에도 빠른 채용이 가능합니다.'}
+                          ? '막상 채용해보니 맞지 않아도 걱정하지 마세요.'
+                          : '급하게 사람이 필요한 경우에도 빠른 채용이 가능합니다.'}
                     </p>
                   </motion.div>
                 ))}
@@ -87,7 +87,7 @@ export const Content = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 relative h-full">
-            
+            <Card />
           </div>
         </div>
         <div>
