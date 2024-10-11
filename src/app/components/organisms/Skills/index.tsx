@@ -11,9 +11,15 @@ type SliderItemProps = {
   title: string;
 };
 
+type SkillProps = { 
+  id: number; 
+  name: string; 
+  image: string 
+};
+
 const SliderItem = ({ src, alt, title }: SliderItemProps) => (
   <motion.div
-    className="mx-2 bg-white bg-opacity-20 p-3 !flex items-center gap-[10px] rounded-[12px] max-w-[332px]" // Menggunakan mx-2 untuk margin horizontal
+    className="mx-2 bg-white bg-opacity-20 p-3 !flex items-center gap-[10px] rounded-[12px] max-w-[332px]"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}>
@@ -24,8 +30,7 @@ const SliderItem = ({ src, alt, title }: SliderItemProps) => (
   </motion.div>
 );
 
-const SkillMobile = () => {
-  const skills = ['한국어 능력', '업무 수행 능력', '겸업 여부', '평판 조회'];
+const SkillMobile = ({ skills }: { skills: string[] }) => {
   return (
     <section className="pt-[50px]">
       <div className="container mx-auto px-[15px]">
@@ -62,27 +67,43 @@ const SkillMobile = () => {
 
 export const Skills = () => {
   const [isDesktop, setIsDesktop] = useState(true);
+  const [skills, setSkills] = useState<SkillProps[]>([]);
+
   const handleResize = () => {
     setIsDesktop(window.innerWidth >= 768);
+  };
+
+  const fetchSkills = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/skills`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const result = await response.json();
+      setSkills(result);
+    } catch (error) {
+      console.error('Fetch skills error:', error);
+    }
   };
 
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
+    fetchSkills();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const sliderSettings = {
     dots: false,
-    slidesToShow: 4, // Ubah menjadi 4 untuk tampilan 1280 ke atas
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     infinite: true,
     arrows: false,
     cssEase: 'linear',
     responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 4 } }, // Menampilkan 4 slide
+      { breakpoint: 1280, settings: { slidesToShow: 4 } },
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
       { breakpoint: 768, settings: { slidesToShow: 2 } },
       { breakpoint: 560, settings: { slidesToShow: 1 } },
@@ -94,15 +115,13 @@ export const Skills = () => {
       {isDesktop ? (
         <div className="image-slider-container pt-[50px]">
           <Slider {...sliderSettings}>
-            <SliderItem src="/icons/computer.webp" alt="computer" title="해외 마케팅" />
-            <SliderItem src="/icons/image.webp" alt="image" title="퍼블리셔" />
-            <SliderItem src="/icons/box.webp" alt="box" title="캐드원(제도사)" />
-            <SliderItem src="/icons/target.webp" alt="target" title="해외 세일즈" />
-            <SliderItem src="/icons/call.webp" alt="call" title="해외 마케팅" />
+            {skills.map((skill) => (
+              <SliderItem key={skill.id} src={skill.image} alt={skill.name} title={skill.name} />
+            ))}
           </Slider>
         </div>
       ) : (
-        <SkillMobile />
+        <SkillMobile skills={skills.map((skill) => skill.name)} />
       )}
     </>
   );
