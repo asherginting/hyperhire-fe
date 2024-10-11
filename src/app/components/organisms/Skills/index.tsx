@@ -13,7 +13,7 @@ type SliderItemProps = {
 
 const SliderItem = ({ src, alt, title }: SliderItemProps) => (
   <motion.div
-    className="mx-[0px] bg-white bg-opacity-20 p-3 !flex items-center gap-[10px] rounded-[12px] max-w-[332px]"
+    className="mx-2 bg-white bg-opacity-20 p-3 !flex items-center gap-[10px] rounded-[12px] max-w-[332px]" // Menggunakan mx-2 untuk margin horizontal
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 0.5 }}>
@@ -74,7 +74,7 @@ export const Skills = () => {
 
   const sliderSettings = {
     dots: false,
-    slidesToShow: 4,
+    slidesToShow: 4, // Ubah menjadi 4 untuk tampilan 1280 ke atas
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
@@ -82,8 +82,8 @@ export const Skills = () => {
     arrows: false,
     cssEase: 'linear',
     responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 1280, settings: { slidesToShow: 4 } }, // Menampilkan 4 slide
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
       { breakpoint: 768, settings: { slidesToShow: 2 } },
       { breakpoint: 560, settings: { slidesToShow: 1 } },
     ],
