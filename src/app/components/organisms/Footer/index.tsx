@@ -51,7 +51,7 @@ export const Footer = () => {
               </div>
               <ul className="pt-[15px]">
                 <li className="mb-4 text-dark text-[14px] leading-[21px]">{item.title}</li>
-                <li className="mb-4 text-medium-gray text-[14px] leading-[21px] flex gap-[5px]">
+                <li className="mb-4 text-medium-gray text-[14px] leading-[21px] flex gap-[5px] items-center">
                   바로가기{' '}
                   <Atoms.Image
                     src="/icons/arrow-right.webp"
@@ -59,7 +59,7 @@ export const Footer = () => {
                     width={20}
                     height={20}
                     className="cursor-pointer"
-                    style={{ width: 'auto', height: 'auto' }} // Menambahkan style untuk menjaga rasio aspek
+                    style={{ width: 'auto', height: 'auto' }}
                   />{' '}
                 </li>
               </ul>
