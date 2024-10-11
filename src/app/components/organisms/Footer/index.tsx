@@ -32,9 +32,9 @@ export const Footer = () => {
       <div className="container mx-auto px-[15px]">
         <div className="grid grid-cols-2 gap-3 sm:gap-[20px] lg:grid-cols-6 md:grid-cols-4">
           <div className="sm:col-span-2 col-span-2">
-            <Link href="/" className="flex items-center">
+            {/* <Link href="/" className="flex items-center"> */}
               <Atoms.Image src="/images/hyperhire.webp" alt="hyperhire-logo" width={187} height={34} />
-            </Link>
+            {/* </Link> */}
             <p className="text-dark text-[14px] pt-[15px] leading-[21px]">
               우리는 국가의 장벽을 넘어 최고의 인재를 매 <br /> 칭해드립니다.
             </p>
@@ -59,6 +59,7 @@ export const Footer = () => {
                     width={20}
                     height={20}
                     className="cursor-pointer"
+                    style={{ width: 'auto', height: 'auto' }} // Menambahkan style untuk menjaga rasio aspek
                   />{' '}
                 </li>
               </ul>

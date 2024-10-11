@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CarouselCard, Skills } from '@/app/components/organisms';
+import { Skills } from '@/app/components/organisms';
 
 const fadeInAnimation = {
   hidden: { opacity: 0 },
@@ -87,7 +87,7 @@ export const Content = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 relative h-full">
-            <CarouselCard />
+            
           </div>
         </div>
         <div>
